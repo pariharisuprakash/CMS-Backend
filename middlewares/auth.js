@@ -1,8 +1,9 @@
-const jwt   = require("jsonwebtoken");
+import  jwt from "jsonwebtoken";
 
-const User = require("../models/User");
+import  User from  "../models/User.js";
 
-module.exports = (req , res , next) => {
+
+export const auth = (req , res , next) => {
     const authHeader = req.headers.authorization;
 
     if (authHeader) {
@@ -28,4 +29,5 @@ module.exports = (req , res , next) => {
     } else {
         return res.status(403).json({error: "Forbidden 🛑🛑"})
     }
+    next();
 }; 

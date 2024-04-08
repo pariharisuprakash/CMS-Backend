@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Joi = require("joi");
+import mongoose from "mongoose";
+import Joi from "joi";
 
 const ContactSchema = new mongoose.Schema({
     name: {
@@ -25,9 +25,9 @@ const ContactSchema = new mongoose.Schema({
 });
 
 
-const Contact = new mongoose.model("Contact", ContactSchema);
+export const Contact = new mongoose.model("Contact", ContactSchema);
 
-const validateContact = (data) => {
+export const validateContact = (data) => {
      const schema = Joi.object({
         name: Joi.string().min(4).max(50).required(),
         address: Joi.string().min(4).max(100).required(),
@@ -40,7 +40,7 @@ const validateContact = (data) => {
 
 };
 
-module.exports = {
+export default {
     validateContact,
     Contact,
 };
